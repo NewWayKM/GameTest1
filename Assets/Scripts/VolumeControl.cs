@@ -1,26 +1,79 @@
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class VolumeControl : MonoBehaviour
 {
     public Slider volumeSlider; // Ссылка на UI Slider
-    private AudioSource audioSource;
+    public AudioSource backgroundMusic;
+    public AudioSource audioSource;
+    public AudioClip eatingSound;
+    public AudioClip enemySound;
+    public AudioClip harvestSound;
+    public AudioClip peasantSound;
+    public AudioClip warriorSound;
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        backgroundMusic = GetComponent<AudioSource>();
 
-        // Установка начального значения громкости
-        if (volumeSlider != null)
+        if (volumeSlider != null)       // Установка начального значения громкости
         {
-            volumeSlider.value = audioSource.volume;
+            volumeSlider.value = backgroundMusic.volume;
             volumeSlider.onValueChanged.AddListener(SetVolume);
         }
     }
 
-    // Метод для установки громкости
-    public void SetVolume(float volume)
+    public void SetVolume(float volume)     // Метод для установки громкости
     {
-        audioSource.volume = volume;
+        backgroundMusic.volume = volume;
+    }
+
+    public void EatingSound()
+    {
+        PlayAudioClip(eatingSound); // усилил звук, под рукой не было аудио редактора , а качать здесь в Крыму 
+        PlayAudioClip(eatingSound); // в деревне это нечто, в сентябре норм будет дома в СПБ
+        PlayAudioClip(eatingSound);
+        PlayAudioClip(eatingSound);
+        PlayAudioClip(eatingSound);
+    }
+
+    public void EnemySound()
+    {
+        PlayAudioClip(enemySound);
+    }
+    public void HarvestSound()
+    {
+        PlayAudioClip(harvestSound);  // усилил звук
+        PlayAudioClip(harvestSound);
+        PlayAudioClip(harvestSound);
+        PlayAudioClip(harvestSound);
+        PlayAudioClip(harvestSound);
+    }
+    public void PeasantSound()
+    {
+        PlayAudioClip(peasantSound);
+    }
+    public void WarriorSound()
+    {
+        PlayAudioClip(warriorSound); // усилил звук
+        PlayAudioClip(warriorSound);
+        PlayAudioClip(warriorSound);
+        PlayAudioClip(warriorSound);
+        PlayAudioClip(warriorSound);
+        PlayAudioClip(warriorSound);
+        PlayAudioClip(warriorSound);
+        PlayAudioClip(warriorSound);
+        PlayAudioClip(warriorSound);
+        PlayAudioClip(warriorSound);
+    }
+
+
+    private void PlayAudioClip(AudioClip clip)
+    {
+        if (clip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(clip);
+        }
     }
 }
